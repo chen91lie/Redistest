@@ -1,0 +1,26 @@
+spring:
+  thymeleaf:
+    cache: false
+  redis:
+    database: 0
+    host: 192.168.112.128
+    port: 6379
+    password: 123
+    timeout: 10s
+    jedis:
+      pool:
+        max-active: 10
+        max-idle: 3
+        max-wait: -1
+        min-idle: -1
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/home?serverTimezone=UTC
+    username: root
+    password: 123
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: com.chenlie.redistest.pojo  # 注意：对应实体类的路径
+server:
+  servlet:
+    context-path: /home
