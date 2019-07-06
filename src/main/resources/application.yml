@@ -1,26 +1,33 @@
 spring:
+  data:
+    mongodb:   #mongodb设置
+      #uri: mongodb://localhost:27017/test
+      uri: mongodb://testrw:testrw@192.168.112.128:27017/test
   thymeleaf:
-    cache: false
+    cache: false #开发时关闭thymeleaf缓存，项目上线后需要开启
   redis:
-    database: 0
-    host: 192.168.112.128
-    port: 6379
-    password: 123
+    database: 0  #指定redis使用第0个数据库
+    host: 192.168.112.128   #指定redis服务器地址
+    port: 6379  #指定redis服务器端口
+    password: 123 #redis密码
     timeout: 10s
-    jedis:
+    jedis:   #配置redis连接池
       pool:
         max-active: 10
         max-idle: 3
         max-wait: -1
         min-idle: -1
-  datasource:
+  datasource:   #配置mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/home?serverTimezone=UTC
     username: root
     password: 123
-mybatis:
-  mapper-locations: classpath:mapper/*.xml  #ע�⣺һ��Ҫ��Ӧmapperӳ��xml�ļ�������·��
-  type-aliases-package: com.chenlie.redistest.pojo  # ע�⣺��Ӧʵ�����·��
-server:
+  resources: #指定静态文件存放路径
+    static-locations: classpath:/static,classpath:templates
+mybatis:  #mybatis配置
+  mapper-locations: classpath:mapper/*.xml  #指定Mapper文件存放路径
+  type-aliases-package: com.chenlie.redistest.pojo  #指定实体类路径
+server: #配置上下文路径
   servlet:
     context-path: /home
+debug: true  #设置日志输出级别为debug
